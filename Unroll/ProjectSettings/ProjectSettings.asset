@@ -4,7 +4,11 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 20
+<<<<<<< HEAD
   productGUID: 8e89e22729ada7447b8c70e41e1763a6
+=======
+  productGUID: 50bdae0f24f4b9c4a93cad3c1b03812e
+>>>>>>> 513fc618724c91a324174c600df8e1cd25f67532
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -12,7 +16,11 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
+<<<<<<< HEAD
   companyName: DefaultCompany
+=======
+  companyName: Group 1
+>>>>>>> 513fc618724c91a324174c600df8e1cd25f67532
   productName: Unroll
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
