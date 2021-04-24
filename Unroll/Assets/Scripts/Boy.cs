@@ -7,6 +7,10 @@ public class Boy : MonoBehaviour
     private Rigidbody myRigidbody;
     public float SPEED;
     public float ANGULAR_SPEED;
+    public float DISTANCE;
+    
+    [SerializeField]
+    Transform Ball;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +19,7 @@ public class Boy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         myRigidbody.velocity = Vector3.zero;
         myRigidbody.angularVelocity = Vector3.zero;
@@ -30,5 +34,24 @@ public class Boy : MonoBehaviour
             myRigidbody.angularVelocity += new Vector3(0, -ANGULAR_SPEED, 0);
         if (Input.GetKey(KeyCode.D))
             myRigidbody.angularVelocity += new Vector3(0, ANGULAR_SPEED, 0);
+
+        if (Ball != null)
+        {
+            BallPositionUpdate();
+        }
+    }
+
+    void BallPositionUpdate()
+    {
+        Ball.position = transform.position + transform.right * DISTANCE;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag.Equals("Ball"))
+        {
+            //if (Input.GetKey(KeyCode.LeftShift))
+                Ball = collision.collider.transform;
+        }
     }
 }
