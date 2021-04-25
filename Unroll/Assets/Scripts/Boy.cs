@@ -43,7 +43,7 @@ public class Boy : MonoBehaviour
 
     void BallPositionUpdate()
     {
-        Ball.position = transform.position + transform.right * DISTANCE;
+        Ball.position = new Vector3(transform.position.x + transform.right.x * DISTANCE, Ball.position.y, transform.position.z + transform.right.z * DISTANCE);
     }
 
     private void OnCollisionEnter(Collision collision)
