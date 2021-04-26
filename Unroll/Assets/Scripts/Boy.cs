@@ -19,13 +19,16 @@ public class Boy : MonoBehaviour
 
     private void Update()
     {
+        RaycastHit hit;
+        Vector3 vectorStart = transform.position + new Vector3(0, 0.5f, 0);
+
+        bool ballCollision = Physics.Raycast(vectorStart, transform.forward, out hit, 1.5f);
+
         if (Ball != null)
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
+            if (Input.GetKeyDown(KeyCode.E) || !ballCollision || !hit.transform.CompareTag("Ball"))
+                
                 Ball = null;
-
-            }
 
             else if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -36,10 +39,8 @@ public class Boy : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            RaycastHit hit;
-            Vector3 vectorStart = transform.position + new Vector3(0, 0.5f, 0);
 
-            if ((Physics.Raycast(vectorStart, transform.forward, out hit, 1.5f) ||
+            if ((ballCollision ||
                 Physics.Raycast(vectorStart, Quaternion.AngleAxis(15, Vector3.up) * transform.forward, out hit, 1.5f) ||
                 Physics.Raycast(vectorStart, Quaternion.AngleAxis(-15, Vector3.up) * transform.forward, out hit, 1.5f))
                 && hit.transform.CompareTag("Ball"))
