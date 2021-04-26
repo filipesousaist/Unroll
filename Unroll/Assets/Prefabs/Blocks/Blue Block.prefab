@@ -108,6 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {fileID: 11400000, guid: 37382255306f8b148952011c317e297a, type: 2}
+  physicsCol: {fileID: 5185205317042389422}
+  triggerCol: {fileID: 6651913259442409852}
 --- !u!65 &6651913259442409852
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -117,7 +119,7 @@ BoxCollider:
   m_GameObject: {fileID: 5185205317042389420}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.1, y: 1.1, z: 1.1}
   m_Center: {x: 0, y: 0, z: 0}

@@ -6,18 +6,28 @@ public class Block : MonoBehaviour
 {
     public ElementalColor color;
 
-    private void MyOnCollisionEnter(Collision collision)
+    private Collider myCollider;
+
+    private BlocksManager blocksManager;
+
+    private void Start()
     {
-        Debug.Log(collision);
-        Ball ball = collision.gameObject.GetComponent<Ball>();
-        if (ball != null && ball.color.Equals(color))
-            Destroy(gameObject);
+        myCollider = GetComponent<Collider>();
+        blocksManager = FindObjectOfType<BlocksManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Ball ball = other.gameObject.GetComponent<Ball>();
         if (ball != null && ball.color.Equals(color))
+        {
+            blocksManager.RemoveBlock(this);
             Destroy(gameObject);
+        }    
+    }
+
+    public void SetBreakable(bool breakable)
+    {
+        myCollider.isTrigger = breakable;
     }
 }

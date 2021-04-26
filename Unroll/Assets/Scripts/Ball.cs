@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    private MeshRenderer myRenderer;
-
     public ElementalColor color;
 
+    private MeshRenderer myRenderer;
+
+    private BlocksManager blocksManager;
 
     void Start()
     {
         myRenderer = GetComponent<MeshRenderer>();
+        blocksManager = FindObjectOfType<BlocksManager>();
     }
 
     public void ChangeColor(ElementalColor newColor)
     {
-        color = newColor;
+        blocksManager.ChangeBreakableBlocks(color, newColor);
         myRenderer.material = newColor.ballMaterial;
+        color = newColor;
     }
 }
