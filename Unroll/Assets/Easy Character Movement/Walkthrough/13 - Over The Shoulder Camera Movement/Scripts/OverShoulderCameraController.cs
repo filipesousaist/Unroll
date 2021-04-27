@@ -80,6 +80,13 @@ namespace OrangeTech.Cameras
 
         public Transform cameraTransform { get; private set; }
 
+        public float DESIRED_DISTANCE;
+        public float ADJUST_CAM_DURATION;
+
+        private bool isHittingWall = false;
+        private float adjustCamTimer;
+        private float lastPosition;
+
         #endregion
 
         #region METHODS
@@ -140,6 +147,46 @@ namespace OrangeTech.Cameras
             _pitch = Mathf.SmoothDampAngle(_pitch, _targetPitch, ref _pitchVelocity, pitchDampTime);
 
             pivotTransform.localRotation = Quaternion.Euler(_pitch, 0.0f, 0.0f);
+
+            // Avoid looking through walls
+
+            cameraTransform.Translate(0, 0, -(cameraTransform.localPosition.z + DESIRED_DISTANCE), Space.Self);
+
+            if (Physics.Raycast(cameraTransform.position + DESIRED_DISTANCE * cameraTransform.forward, -cameraTransform.forward,
+                out RaycastHit hit, DESIRED_DISTANCE, LayerMask.GetMask("Default")))
+            {
+                isHittingWall = true;
+                float position = DESIRED_DISTANCE - hit.distance + hit.distance;
+                cameraTransform.Translate(0, 0, position, Space.Self);
+   
+                lastPosition = position;
+            }
+            else if (isHittingWall)
+            {
+                isHittingWall = false;
+                adjustCamTimer = ADJUST_CAM_DURATION;
+            }
+            
+            if (adjustCamTimer > 0 && !isHittingWall)
+            {
+                cameraTransform.Translate(0, 0, 
+                    lastPosition * adjustCamTimer / ADJUST_CAM_DURATION, Space.Self);
+
+                adjustCamTimer = Mathf.Max(adjustCamTimer - Time.deltaTime, 0);
+            }
+                
+        }
+
+        private void Updates()
+        {
+            if (adjustCamTimer > 0)
+            {
+                cameraTransform.Translate(0, 0,
+                    lastPosition * adjustCamTimer / ADJUST_CAM_DURATION, Space.Self);
+
+                adjustCamTimer = Mathf.Max(adjustCamTimer - Time.deltaTime, 0);
+                Debug.Log("Time:" + Time.deltaTime.ToString());
+            }
         }
 
         #endregion

@@ -11,6 +11,9 @@ public class Boy : MonoBehaviour
     [SerializeField]
     Transform Ball;
 
+    private bool ballInRange;
+    private Transform tempBallTransform;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +26,16 @@ public class Boy : MonoBehaviour
         Vector3 vectorStart = transform.position + new Vector3(0, 0.5f, 0);
 
         bool ballCollision = Physics.Raycast(vectorStart, transform.forward, out hit, 1.5f);
+        
 
         if (Ball != null)
         {
-            if (Input.GetKeyDown(KeyCode.E) || !ballCollision || !hit.transform.CompareTag("Ball"))
-                
+            BallPositionUpdate();
+
+            if (Input.GetKeyDown(KeyCode.E) || !ballInRange)
+            {
                 Ball = null;
+            }
 
             else if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -37,15 +44,13 @@ public class Boy : MonoBehaviour
             }
 
         }
+
         else if (Input.GetKeyDown(KeyCode.E))
         {
 
-            if ((ballCollision ||
-                Physics.Raycast(vectorStart, Quaternion.AngleAxis(15, Vector3.up) * transform.forward, out hit, 1.5f) ||
-                Physics.Raycast(vectorStart, Quaternion.AngleAxis(-15, Vector3.up) * transform.forward, out hit, 1.5f))
-                && hit.transform.CompareTag("Ball"))
+            if (ballInRange)
             {
-                Ball = hit.transform;
+                Ball = tempBallTransform.transform;
             }
         }
 
@@ -54,13 +59,30 @@ public class Boy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Ball != null)
-            BallPositionUpdate();
     }
 
     void BallPositionUpdate()
     {
         Ball.position = new Vector3(transform.position.x + transform.forward.x * DISTANCE, Ball.position.y, transform.position.z + transform.forward.z * DISTANCE);
+        Ball.GetComponent<Rigidbody>().angularVelocity = Ball.GetComponent<Rigidbody>().angularVelocity.normalized * Ball.GetComponent<Rigidbody>().velocity.magnitude;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        
+        if (Ball == null && other.transform.CompareTag("Ball"))
+        {
+            ballInRange = true;
+            tempBallTransform = other.transform;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.CompareTag("Ball"))
+        {
+            ballInRange = false;
+
+        }
+    }
 }

@@ -20,9 +20,6 @@ public class BlocksManager : MonoBehaviour
         if (blocksByColor.ContainsKey(newColor))
             foreach (Block block in blocksByColor[newColor])
                 block.SetBreakable(true);
-
-        //Debug.Log(newColor);
-        //Debug.Log(blocksByColor);
     }
 
     void InitBlocks()
