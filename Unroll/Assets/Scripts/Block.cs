@@ -14,7 +14,7 @@ public class Block : MonoBehaviour
 
     private Rigidbody ballRigidbody;
 
-    private readonly float BALL_SPEED_DECREASE = 10;
+    private readonly float BALL_SPEED_DECREASE = 5;
 
     private void Start()
     {
@@ -29,7 +29,7 @@ public class Block : MonoBehaviour
         if (other.gameObject.CompareTag("Ball") && ball.color.Equals(color))
         {
             blocksManager.RemoveBlock(this);
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
 
             if (ballRigidbody.velocity.magnitude < BALL_SPEED_DECREASE)
                 ballRigidbody.velocity = Vector3.zero;
@@ -40,7 +40,7 @@ public class Block : MonoBehaviour
 
     public void SetBreakable(bool breakable)
     {
-        myCollider.isTrigger = breakable;
-
+        transform.parent.gameObject.layer = LayerMask.NameToLayer(
+            breakable ? "Breakable Blocks" : "Blocks");
     }
 }

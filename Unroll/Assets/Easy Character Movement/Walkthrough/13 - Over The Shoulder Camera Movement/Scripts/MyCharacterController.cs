@@ -154,7 +154,7 @@ namespace ECM.Walkthrough.OverShoulderCamera
 
         }
 
-        protected override void UpdateRotation()
+        protected override void UpdateRotation ()
         {
             // Perform character (CharacterMovement component) rotation, around its Y - axis(yaw rotation)
 
