@@ -153,10 +153,12 @@ namespace OrangeTech.Cameras
             cameraTransform.Translate(0, 0, -(cameraTransform.localPosition.z + DESIRED_DISTANCE), Space.Self);
 
             if (Physics.Raycast(cameraTransform.position + DESIRED_DISTANCE * cameraTransform.forward, -cameraTransform.forward,
-                out RaycastHit hit, DESIRED_DISTANCE, LayerMask.GetMask("Default")))
+                out RaycastHit hit, DESIRED_DISTANCE*1.75f, LayerMask.GetMask("Default")))
             {
+                hit.distance = Mathf.Clamp(hit.distance, 0, DESIRED_DISTANCE);
                 isHittingWall = true;
-                float position = DESIRED_DISTANCE - hit.distance + hit.distance;
+                float dotProduct = Mathf.Abs(Vector3.Dot(hit.normal, cameraTransform.forward));
+                float position = DESIRED_DISTANCE - hit.distance * dotProduct;
                 cameraTransform.Translate(0, 0, position, Space.Self);
    
                 lastPosition = position;
@@ -176,19 +178,6 @@ namespace OrangeTech.Cameras
             }
                 
         }
-
-        private void Updates()
-        {
-            if (adjustCamTimer > 0)
-            {
-                cameraTransform.Translate(0, 0,
-                    lastPosition * adjustCamTimer / ADJUST_CAM_DURATION, Space.Self);
-
-                adjustCamTimer = Mathf.Max(adjustCamTimer - Time.deltaTime, 0);
-                Debug.Log("Time:" + Time.deltaTime.ToString());
-            }
-        }
-
         #endregion
     }
 }
