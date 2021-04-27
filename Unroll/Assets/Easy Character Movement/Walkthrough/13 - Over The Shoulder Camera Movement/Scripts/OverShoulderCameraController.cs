@@ -156,7 +156,7 @@ namespace OrangeTech.Cameras
                 out RaycastHit hit, DESIRED_DISTANCE, LayerMask.GetMask("Default")))
             {
                 isHittingWall = true;
-                float position = DESIRED_DISTANCE - hit.distance + hit.distance;
+                float position = DESIRED_DISTANCE - hit.distance;
                 cameraTransform.Translate(0, 0, position, Space.Self);
    
                 lastPosition = position;
