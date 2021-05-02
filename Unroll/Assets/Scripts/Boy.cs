@@ -7,6 +7,11 @@ public class Boy : MonoBehaviour
     private Rigidbody myRigidbody;
     public float PUSH_FORCE;
     public float DISTANCE;
+
+    //Text boxes
+    public GameObject grabBallTextBox;
+    public GameObject dropBallTextBox;
+    public GameObject hardPushTextBox;
     
     [SerializeField]
     Transform Ball;
@@ -27,6 +32,11 @@ public class Boy : MonoBehaviour
 
         bool ballCollision = Physics.Raycast(vectorStart, transform.forward, out hit, 1.5f);
         
+        if (Ball == null)
+        {
+            dropBallTextBox.SetActive(false);
+            hardPushTextBox.SetActive(false);
+        }
 
         if (Ball != null)
         {
@@ -50,6 +60,9 @@ public class Boy : MonoBehaviour
 
             if (ballInRange)
             {
+                grabBallTextBox.SetActive(false);
+                dropBallTextBox.SetActive(true);
+                hardPushTextBox.SetActive(true);
                 Ball = tempBallTransform.transform;
             }
         }
@@ -72,6 +85,7 @@ public class Boy : MonoBehaviour
         
         if (Ball == null && other.transform.CompareTag("Ball"))
         {
+            grabBallTextBox.SetActive(true);
             ballInRange = true;
             tempBallTransform = other.transform;
         }
@@ -81,6 +95,7 @@ public class Boy : MonoBehaviour
     {
         if (other.transform.CompareTag("Ball"))
         {
+            grabBallTextBox.SetActive(false);
             ballInRange = false;
 
         }
