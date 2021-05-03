@@ -8,6 +8,8 @@ public class Boy : MonoBehaviour
     public float PUSH_FORCE;
     public float DISTANCE;
 
+    public static bool hasKey = false;
+
     //Text boxes
     public GameObject grabBallTextBox;
     public GameObject dropBallTextBox;
@@ -88,6 +90,13 @@ public class Boy : MonoBehaviour
             grabBallTextBox.SetActive(true);
             ballInRange = true;
             tempBallTransform = other.transform;
+        }
+
+        if (other.transform.CompareTag("Key"))
+        {
+            hasKey = true;
+            other.gameObject.SetActive(false);
+            Debug.Log("Key picked up");
         }
     }
 
