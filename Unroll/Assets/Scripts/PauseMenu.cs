@@ -50,5 +50,6 @@ public class PauseMenu : MonoBehaviour
     public void Quit()
     {
         Debug.Log("Quitting game...");
+        Application.Quit();
     }
 }
