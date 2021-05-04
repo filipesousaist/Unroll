@@ -51,6 +51,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         GameIsPaused = false;
+        Boy.hasKey = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
