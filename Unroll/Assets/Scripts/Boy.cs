@@ -15,7 +15,8 @@ public class Boy : MonoBehaviour
     public GameObject hardPushTextBox;
 
     public Rigidbody ballColliderRigidbody;
-    private HingeJoint joint; // Do not assign
+    private HingeJoint joint;
+    //private ConfigurableJoint joint;
 
     private bool hasBall = false;
     private Ball ball;
@@ -90,6 +91,8 @@ public class Boy : MonoBehaviour
         joint.connectedAnchor = Vector3.zero; //new Vector3(0, 0.5f, 0);
 
         joint.axis = Vector3.right; // new Vector3(-1, 0, 0);
+
+        //joint.xMotion = joint.zMotion = ConfigurableJointMotion.Locked;
     }
 
     private void ReleaseBall()
@@ -120,7 +123,7 @@ public class Boy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!hasBall && other.transform.CompareTag("Ball"))
+        if (/*!hasBall && */other.transform.CompareTag("Ball") || other.transform.CompareTag("Ball Collider"))
         {
             grabBallTextBox.SetActive(true);
             ballInRange = true;
@@ -136,7 +139,7 @@ public class Boy : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.transform.CompareTag("Ball"))
+        if (other.transform.CompareTag("Ball") || other.transform.CompareTag("Ball Collider"))
         {
             grabBallTextBox.SetActive(false);
             ballInRange = false;

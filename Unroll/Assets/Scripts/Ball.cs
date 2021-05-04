@@ -24,6 +24,18 @@ public class Ball : MonoBehaviour
         blocksManager = FindObjectOfType<BlocksManager>();
     }
 
+    private void Update()
+    {
+        if (myRigidbody.isKinematic)
+            KinematicUpdate();
+    }
+
+    private void KinematicUpdate()
+    {
+        transform.position = colliderRigidbody.transform.position; // TODO: Is rigidbody necessary? Maybe only Transform
+        // TODO: Rotation
+    }
+
     public void ChangeColor(ElementalColor newColor)
     {
         blocksManager.ChangeBreakableBlocks(color, newColor);
@@ -33,17 +45,20 @@ public class Ball : MonoBehaviour
 
     public void OnGrab()
     {
+        myRigidbody.velocity = Vector3.zero; // So that on release the velocity is forgotten
+        myRigidbody.isKinematic = true;
         //joint.connectedBody = colliderRigidbody;
         //joint.xDrive = joint.yDrive = joint.zDrive = DRIVE_ACTIVE;
-        transform.position = colliderRigidbody.transform.position;
-        CreateJoint();
+        //transform.position = colliderRigidbody.transform.position;
+        //CreateJoint();
         //myRigidbody.mass = 0.2f;
         //myRigidbody.rotation = Quaternion.identity;
-        myRigidbody.velocity = Vector3.zero;
+        
     }
 
     public void OnRelease()
     {
+        myRigidbody.isKinematic = false;
         if (joint != null)
             Destroy(joint);
         //myRigidbody.mass = 2;
@@ -69,11 +84,5 @@ public class Ball : MonoBehaviour
         joint.massScale = 2;
 
         
-    }
-
-    private void Update()
-    {
-        if (myRigidbody.velocity.magnitude < 1e-4)
-            myRigidbody.rotation = Quaternion.identity;
     }
 }
