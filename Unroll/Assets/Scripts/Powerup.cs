@@ -16,7 +16,15 @@ public class Powerup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Ball ball = other.gameObject.GetComponent<Ball>();
+        Ball ball;
+        if (other.gameObject.name.Equals("ECM_Ball"))
+        {
+            ball = other.gameObject.GetComponentInChildren<Ball>();
+        }
+        else
+        {
+            ball = other.gameObject.GetComponent<Ball>();
+        }
         if (ball != null)
         {
             ball.ChangeColor(color);
