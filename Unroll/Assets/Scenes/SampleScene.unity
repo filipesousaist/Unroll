@@ -47436,7 +47436,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 2
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -47981,6 +47981,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reactionColor: {fileID: 11400000, guid: 09399a7f6f8bc1140b2926a286e9f14b, type: 2}
   cubeMaterial: {fileID: 2100000, guid: b52e438f1d8c7544aa55b36f4c4a765e, type: 2}
+  boyInitPos: {x: -2.3, y: 0.6, z: 4.8}
+  ballInitPos: {x: -1.14, y: 0.6, z: 4.8}
 --- !u!4 &1828776400 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4217406506858420, guid: 9347e607fa2688a4f8e734e7811f3723,

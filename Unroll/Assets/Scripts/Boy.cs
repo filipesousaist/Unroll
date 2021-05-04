@@ -29,46 +29,49 @@ public class Boy : MonoBehaviour
 
     private void Update()
     {
-        RaycastHit hit;
-        Vector3 vectorStart = transform.position + new Vector3(0, 0.5f, 0);
-
-        bool ballCollision = Physics.Raycast(vectorStart, transform.forward, out hit, 1.5f);
-        
-        if (Ball == null)
-        {
-            dropBallTextBox.SetActive(false);
-            hardPushTextBox.SetActive(false);
-        }
-
-        if (Ball != null)
-        {
-            BallPositionUpdate();
-
-            if (Input.GetKeyDown(KeyCode.E) || !ballInRange)
-            {
-                Ball = null;
-            }
-
-            else if (Input.GetKey(KeyCode.LeftShift))
-            {
-                Ball.GetComponent<Rigidbody>().AddForce(transform.forward * PUSH_FORCE);
-                Ball = null;
-            }
-
-        }
-
-        else if (Input.GetKeyDown(KeyCode.E))
+        if (!PauseMenu.GameIsPaused)
         {
 
-            if (ballInRange)
+            RaycastHit hit;
+            Vector3 vectorStart = transform.position + new Vector3(0, 0.5f, 0);
+
+            bool ballCollision = Physics.Raycast(vectorStart, transform.forward, out hit, 1.5f);
+
+            if (Ball == null)
             {
-                grabBallTextBox.SetActive(false);
-                dropBallTextBox.SetActive(true);
-                hardPushTextBox.SetActive(true);
-                Ball = tempBallTransform.transform;
+                dropBallTextBox.SetActive(false);
+                hardPushTextBox.SetActive(false);
+            }
+
+            if (Ball != null)
+            {
+                BallPositionUpdate();
+
+                if (Input.GetKeyDown(KeyCode.E) || !ballInRange)
+                {
+                    Ball = null;
+                }
+
+                else if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    Ball.GetComponent<Rigidbody>().AddForce(transform.forward * PUSH_FORCE);
+                    Ball = null;
+                }
+
+            }
+
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+
+                if (ballInRange)
+                {
+                    grabBallTextBox.SetActive(false);
+                    dropBallTextBox.SetActive(true);
+                    hardPushTextBox.SetActive(true);
+                    Ball = tempBallTransform.transform;
+                }
             }
         }
-
     }
 
     // Update is called once per frame
@@ -80,6 +83,11 @@ public class Boy : MonoBehaviour
     {
         Ball.position = new Vector3(transform.position.x + transform.forward.x * DISTANCE, Ball.position.y, transform.position.z + transform.forward.z * DISTANCE);
         Ball.GetComponent<Rigidbody>().angularVelocity = Ball.GetComponent<Rigidbody>().angularVelocity.normalized * Ball.GetComponent<Rigidbody>().velocity.magnitude;
+    }
+
+    public bool HasBall()
+    {
+        return Ball != null;
     }
 
     private void OnTriggerEnter(Collider other)

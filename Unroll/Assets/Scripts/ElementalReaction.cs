@@ -8,12 +8,31 @@ public class ElementalReaction : MonoBehaviour
     public ElementalColor reactionColor;
     public Material cubeMaterial;
 
+    public Vector3 boyInitPos;
+    public Vector3 ballInitPos;
+
+    private bool tp;
     private Ball ball;
+    private Boy boy;
 
     // Start is called before the first frame update
     void Start()
     {
         ball = FindObjectOfType<Ball>();
+        boy = FindObjectOfType<Boy>();
+    }
+
+    private void Update()
+    {
+        if (tp)
+        {
+            tp = false;
+
+            ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            ball.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            boy.transform.position = boyInitPos;
+            ball.transform.position = ballInitPos;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -28,12 +47,13 @@ public class ElementalReaction : MonoBehaviour
             }
             else
             {
-                Debug.Log("Game Over");
+                tp = true;
+                
             }
         }
         else
         {
-            Debug.Log("Game Over");
+            tp = true;
         }
     }
 }

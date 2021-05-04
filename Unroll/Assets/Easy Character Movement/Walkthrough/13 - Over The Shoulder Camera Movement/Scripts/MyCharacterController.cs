@@ -129,29 +129,31 @@ namespace ECM.Walkthrough.OverShoulderCamera
 
         protected override void HandleInput()
         {
-            moveDirection = new Vector3
+            if (!PauseMenu.GameIsPaused)
             {
-                x = Input.GetAxisRaw("Horizontal"),
-                y = 0.0f,
-                z = Input.GetAxisRaw("Vertical")
-            };
+                moveDirection = new Vector3
+                {
+                    x = Input.GetAxisRaw("Horizontal"),
+                    y = 0.0f,
+                    z = Input.GetAxisRaw("Vertical")
+                };
 
-            // Transform move direction to be relative to character's current orientation
+                // Transform move direction to be relative to character's current orientation
 
-            moveDirection = transform.TransformDirection(moveDirection);
+                moveDirection = transform.TransformDirection(moveDirection);
 
-            // In this implementation, we rotate the character's (along its yaw) using the mouse
+                // In this implementation, we rotate the character's (along its yaw) using the mouse
 
-            // Smoothly rotate the character's (along its Y-axis) using the horizontal mouse input.
+                // Smoothly rotate the character's (along its Y-axis) using the horizontal mouse input.
 
-            _targetYaw += Input.GetAxis("Mouse X") * 2.0f;
-            _targetYaw = Utils.WrapAngle(_targetYaw);
-            
-            // Walk, jump inputs
+                _targetYaw += Input.GetAxis("Mouse X") * 2.0f;
+                _targetYaw = Utils.WrapAngle(_targetYaw);
 
-            walk = Input.GetButton("Fire3");
-            jump = Input.GetButton("Jump");
+                // Walk, jump inputs
 
+                walk = Input.GetButton("Fire3");
+                jump = Input.GetButton("Jump");
+            }
         }
 
         protected override void UpdateRotation ()
