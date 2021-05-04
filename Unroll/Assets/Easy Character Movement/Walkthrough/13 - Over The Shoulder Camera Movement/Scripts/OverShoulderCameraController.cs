@@ -153,7 +153,7 @@ namespace OrangeTech.Cameras
             cameraTransform.Translate(0, 0, -(cameraTransform.localPosition.z + DESIRED_DISTANCE), Space.Self);
 
             if (Physics.Raycast(cameraTransform.position + DESIRED_DISTANCE * cameraTransform.forward, -cameraTransform.forward,
-                out RaycastHit hit, DESIRED_DISTANCE*1.9f, LayerMask.GetMask("Default")))
+                out RaycastHit hit, DESIRED_DISTANCE * 1.9f, LayerMask.GetMask("Default")))
             {
                 isHittingWall = true;
                 float distance = Mathf.Clamp(hit.distance, 0, DESIRED_DISTANCE);
