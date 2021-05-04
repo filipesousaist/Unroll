@@ -117,4 +117,8 @@ public class Boy : MonoBehaviour
 
         }
     }
+
+    public bool CheckIfHasKey() {
+        return hasKey;
+    }
 }
