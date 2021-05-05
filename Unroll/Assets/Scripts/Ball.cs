@@ -58,7 +58,7 @@ public class Ball : MonoBehaviour
 
     private void Update()
     {
-        if (myRigidbody.isKinematic)
+        if (boy.HasBall())
         {
 
             UpdatePosition();
@@ -76,7 +76,7 @@ public class Ball : MonoBehaviour
             boy.transform.position.z + boy.transform.forward.z * DISTANCE_TO_BOY
         );
 
-        CheckDistanceToFloor();
+        //CheckDistanceToFloor();
     }
 
     private void CheckDistanceToFloor()
