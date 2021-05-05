@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
         if (!PauseMenu.GameIsPaused)
             if (Input.GetKeyDown(KeyCode.R))
             {
+                Boy.hasKey = false;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
     }

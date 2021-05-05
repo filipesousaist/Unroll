@@ -23,7 +23,6 @@ public class Block : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision");
         if (other.gameObject.CompareTag("Ball") && ball.color.Equals(color))
         {
             blocksManager.RemoveBlock(this);

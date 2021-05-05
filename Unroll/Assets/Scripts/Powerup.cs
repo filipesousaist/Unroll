@@ -23,10 +23,7 @@ public class Powerup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Ball ball = other.gameObject.GetComponent<Ball>();
         if (other.gameObject.CompareTag("Ball"))
-        {
             ball.ChangeColor(color);
-        }
     }
 }

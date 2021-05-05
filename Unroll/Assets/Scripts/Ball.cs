@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ECM.Walkthrough.OverShoulderCamera;
+using ECM.Components;
 
 public class Ball : MonoBehaviour
 {
@@ -22,12 +24,30 @@ public class Ball : MonoBehaviour
     private Vector3 lastPosition;
     private float RADIUS;
     
+    
+    public Transform ecmTransform;
+
+    public Rigidbody ballRigidbody;
+
+    public Rigidbody ecmRigidbody;
+
+    public CapsuleCollider ecmCollider;
+
+    public SphereCollider ballCollider;
+
+    public MyCharacterController myCharacterController;
+
+    public CharacterMovement characterMovement;
+
+    public Camera ballCam;
+
     void Awake()
     {
         myRenderer = GetComponent<MeshRenderer>();
         myRigidbody = GetComponent<Rigidbody>();
         myCollider = GetComponent<SphereCollider>();
         blocksManager = FindObjectOfType<BlocksManager>();
+        Debug.Log(this.gameObject.transform.position);
     }
 
     private void Start()
@@ -104,5 +124,28 @@ public class Ball : MonoBehaviour
     {
         myRigidbody.isKinematic = false;
         myCollider.enabled = true;
+    }
+    public void ActivateControl() {
+        ballRigidbody.isKinematic = true;
+        ecmRigidbody.isKinematic = false;
+        ecmCollider.enabled = true;
+        ballCollider.enabled = false;
+        myCharacterController.enabled = true;
+        characterMovement.enabled = true;
+        Vector3 newPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y * -1f, gameObject.transform.position.z);
+        ecmTransform.position = newPos;
+        ecmTransform.rotation = Quaternion.identity;
+        ballCam.gameObject.SetActive(true);
+        gameObject.transform.localPosition = new Vector3(0, 1f, 0);
+    }
+
+    public void DeactivateControl() {
+        ballRigidbody.isKinematic = false;
+        ecmRigidbody.isKinematic = true;
+        ecmCollider.enabled = false;
+        ballCollider.enabled = true;
+        myCharacterController.enabled = false;
+        characterMovement.enabled = false;
+        ballCam.gameObject.SetActive(false);
     }
 }

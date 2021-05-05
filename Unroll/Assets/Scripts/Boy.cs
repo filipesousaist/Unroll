@@ -96,4 +96,8 @@ public class Boy : MonoBehaviour
             ballInRange = false;
         }
     }
+
+    public bool CheckIfHasKey() {
+        return hasKey;
+    }
 }

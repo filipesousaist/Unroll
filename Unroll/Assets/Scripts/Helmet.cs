@@ -8,8 +8,15 @@ public class Helmet : MonoBehaviour
     public Material greenMaterial;
     public Material redMaterial;
 
+    public Transform boy;
+
+    public Ball ball;
+
+    public Camera boyCamera;
+
     public bool activated = false; //true = bola esta no labirinto / false = bola esta fora do labirinto
     private bool canUse = false; //true = boy esta por baixo do helmet / false = boy nao esta debaixo do helmet
+    private bool ballMode = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +28,7 @@ public class Helmet : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name.Equals("Boy") && activated)
+        if (other.gameObject.name.Equals("Boy"))
         {
             canUse = false;
         }
@@ -37,10 +44,29 @@ public class Helmet : MonoBehaviour
     }
 
     public void activate() {
-        activated = activated ? false : true;
-        myRenderer.material = activated ? greenMaterial : redMaterial;
+        activated = true;
+        myRenderer.material = greenMaterial;
     }
 
-    void controlBall() { 
+    public void deactivate() {
+        activated = false;
+        myRenderer.material = redMaterial;
+    }
+
+    public void controlBall() {
+        if (!ballMode)
+        {
+            boy.gameObject.SetActive(false);
+            boyCamera.gameObject.SetActive(false);
+            ball.ActivateControl();
+            ballMode = true;
+        }
+        else
+        {
+            boy.gameObject.SetActive(true);
+            boyCamera.gameObject.SetActive(true);
+            ball.DeactivateControl();
+            ballMode = false;
+        }
     }
 }

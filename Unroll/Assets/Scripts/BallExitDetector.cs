@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallDetector : MonoBehaviour
+public class BallExitDetector : MonoBehaviour
 {
     public Helmet helmet;
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.name.Equals("Ball")  && !helmet.activated)
+        if (collider.gameObject.name.Equals("ECM_Ball") && helmet.activated)
         {
-            helmet.activate();
+            helmet.deactivate();
+            helmet.controlBall();
         }
     }
 }
