@@ -11,7 +11,7 @@ public class ElementalReaction : MonoBehaviour
     public Vector3 boyInitPos;
     public Vector3 ballInitPos;
 
-    private bool tp;
+    private bool tp = false;
     private Ball ball;
     private Boy boy;
 
@@ -37,23 +37,13 @@ public class ElementalReaction : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag("Ball"))
+        if (collision.transform.CompareTag("Ball") && ball.color.Equals(reactionColor))
         {
-            if (ball.color.Equals(reactionColor))
-            {
-                GameObject cubePath = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cubePath.transform.position = collision.transform.position - Vector3.up*0.95f;
-                cubePath.GetComponent<MeshRenderer>().material = cubeMaterial;
-            }
-            else
-            {
-                tp = true;
-                
-            }
+            GameObject cubePath = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cubePath.transform.position = collision.transform.position + Vector3.down * 0.95f;
+            cubePath.GetComponent<MeshRenderer>().material = cubeMaterial;
         }
         else
-        {
             tp = true;
-        }
     }
 }

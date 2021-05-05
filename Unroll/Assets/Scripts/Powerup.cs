@@ -6,18 +6,25 @@ public class Powerup : MonoBehaviour
 {
     private readonly float ROTATE_SPEED = 60;
 
+    private Ball ball;
+
     public ElementalColor color;
 
+    private void Awake()
+    {
+        ball = FindObjectOfType<Ball>();
+    }
+
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         transform.Rotate(Vector3.up, ROTATE_SPEED * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Ball ball = other.gameObject.GetComponent<Ball>();
-        if (ball != null)
+        //Ball ball = other.gameObject.GetComponent<Ball>();
+        if (other.gameObject.CompareTag("Ball"))
         {
             ball.ChangeColor(color);
         }

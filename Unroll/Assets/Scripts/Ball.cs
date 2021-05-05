@@ -6,34 +6,83 @@ public class Ball : MonoBehaviour
 {
     public ElementalColor color;
 
-    public Rigidbody colliderRigidbody;
-    private ConfigurableJoint joint; // Do not assign
+    public float DISTANCE_TO_BOY;
+    public float STICK_THRESHOLD;
+    public float RELEASE_THRESHOLD;
 
-    private Rigidbody myRigidbody;
+    public Rigidbody colliderRigidbody;
+    public Boy boy;
+
     private MeshRenderer myRenderer;
+    private Rigidbody myRigidbody;
+    private SphereCollider myCollider;
 
     private BlocksManager blocksManager;
 
-    private readonly JointDrive DRIVE_0 = new JointDrive() { positionSpring = 0, maximumForce = float.MaxValue };
-    private readonly JointDrive DRIVE_ACTIVE = new JointDrive() { positionSpring = 200, maximumForce = float.MaxValue };
-
+    private Vector3 lastPosition;
+    private float RADIUS;
+    
     void Awake()
     {
-        myRigidbody = GetComponent<Rigidbody>();
         myRenderer = GetComponent<MeshRenderer>();
+        myRigidbody = GetComponent<Rigidbody>();
+        myCollider = GetComponent<SphereCollider>();
         blocksManager = FindObjectOfType<BlocksManager>();
+    }
+
+    private void Start()
+    {
+        lastPosition = transform.position;
+        RADIUS = transform.localScale.y / 2;
     }
 
     private void Update()
     {
         if (myRigidbody.isKinematic)
-            KinematicUpdate();
+        {
+
+            UpdatePosition();
+            UpdateRotation();
+        }
     }
 
-    private void KinematicUpdate()
+    private void UpdatePosition()
     {
-        transform.position = colliderRigidbody.transform.position; // TODO: Is rigidbody necessary? Maybe only Transform
-        // TODO: Rotation
+        lastPosition = transform.position;
+
+        transform.position = new Vector3(
+            boy.transform.position.x + boy.transform.forward.x * DISTANCE_TO_BOY,
+            colliderRigidbody.transform.position.y,
+            boy.transform.position.z + boy.transform.forward.z * DISTANCE_TO_BOY
+        );
+
+        CheckDistanceToFloor();
+    }
+
+    private void CheckDistanceToFloor()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit downHit, LayerMask.GetMask("Default")))
+        {
+            if (downHit.distance > RADIUS + RELEASE_THRESHOLD)
+                boy.ReleaseBall();
+            else if (downHit.distance >= RADIUS && downHit.distance <= RADIUS + STICK_THRESHOLD)
+                StickToFloor(downHit);      
+        }
+    }
+
+    private void StickToFloor(RaycastHit downHit)
+    {
+        transform.position += Vector3.down * (downHit.distance - RADIUS);
+        if (Physics.Raycast(transform.position, -downHit.normal, out RaycastHit normalHit, RADIUS + STICK_THRESHOLD, LayerMask.GetMask("Default")))
+            colliderRigidbody.velocity = downHit.normal * (normalHit.distance - RADIUS) / Time.deltaTime;
+    }
+
+    private void UpdateRotation()
+    {
+        Vector3 difference = transform.position - lastPosition;
+        Vector3 cross = Vector3.Cross(Vector3.up, difference.normalized);
+
+        transform.Rotate(cross, difference.magnitude * Mathf.Rad2Deg / RADIUS, Space.World);
     }
 
     public void ChangeColor(ElementalColor newColor)
@@ -47,42 +96,13 @@ public class Ball : MonoBehaviour
     {
         myRigidbody.velocity = Vector3.zero; // So that on release the velocity is forgotten
         myRigidbody.isKinematic = true;
-        //joint.connectedBody = colliderRigidbody;
-        //joint.xDrive = joint.yDrive = joint.zDrive = DRIVE_ACTIVE;
-        //transform.position = colliderRigidbody.transform.position;
-        //CreateJoint();
-        //myRigidbody.mass = 0.2f;
-        //myRigidbody.rotation = Quaternion.identity;
-        
+        myCollider.enabled = false;
+        transform.position = colliderRigidbody.transform.position;
     }
 
     public void OnRelease()
     {
         myRigidbody.isKinematic = false;
-        if (joint != null)
-            Destroy(joint);
-        //myRigidbody.mass = 2;
-        //joint.connectedBody = null;
-        //joint.xDrive = joint.yDrive = joint.zDrive = DRIVE_0;
-    }
-
-    private void CreateJoint()
-    {
-        joint = gameObject.AddComponent<ConfigurableJoint>();
-
-        joint.xMotion = joint.yMotion = joint.zMotion = ConfigurableJointMotion.Locked;
-        joint.xDrive = joint.yDrive = joint.zDrive = DRIVE_ACTIVE;
-
-        //joint.autoConfigureConnectedAnchor = false;
-        joint.connectedBody = colliderRigidbody;
-
-        joint.anchor = Vector3.zero;
-        joint.connectedAnchor = Vector3.zero;
-
-        joint.enableCollision = false;
-
-        joint.massScale = 2;
-
-        
+        myCollider.enabled = true;
     }
 }

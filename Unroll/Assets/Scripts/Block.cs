@@ -6,8 +6,6 @@ public class Block : MonoBehaviour
 {
     public ElementalColor color;
 
-    private Collider myCollider;
-
     private BlocksManager blocksManager;
 
     private Ball ball;
@@ -16,9 +14,8 @@ public class Block : MonoBehaviour
 
     private readonly float BALL_SPEED_DECREASE = 5;
 
-    private void Start()
+    private void Awake()
     {
-        myCollider = GetComponent<Collider>();
         blocksManager = FindObjectOfType<BlocksManager>();
         ball = FindObjectOfType<Ball>();
         ballRigidbody = ball.GetComponent<Rigidbody>();
@@ -26,6 +23,7 @@ public class Block : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Collision");
         if (other.gameObject.CompareTag("Ball") && ball.color.Equals(color))
         {
             blocksManager.RemoveBlock(this);

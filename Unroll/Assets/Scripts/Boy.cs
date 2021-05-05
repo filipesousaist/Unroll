@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Boy : MonoBehaviour
 {
     public float PUSH_FORCE;
-    public float DISTANCE;
-
+    
     public static bool hasKey = false;
 
     //Text boxes
@@ -14,18 +11,12 @@ public class Boy : MonoBehaviour
     public GameObject dropBallTextBox;
     public GameObject hardPushTextBox;
 
-    public Rigidbody ballColliderRigidbody;
-    private HingeJoint joint;
-    //private ConfigurableJoint joint;
+    public GameObject ballCollider;
+    public Ball ball;
 
     private bool hasBall = false;
-    private Ball ball;
     private bool ballInRange;
 
-    private void Awake()
-    {
-        ball = FindObjectOfType<Ball>();
-    }
     private void Start()
     {
         ReleaseBall();
@@ -35,15 +26,13 @@ public class Boy : MonoBehaviour
     {
         if (hasBall)
         {
-            //BallPositionUpdate();
-
             if (Input.GetKeyDown(KeyCode.E) || !ballInRange)
                 ReleaseBall();
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                ball.transform.GetComponent<Rigidbody>().AddForce(transform.forward * PUSH_FORCE);
                 ReleaseBall();
+                ball.transform.GetComponent<Rigidbody>().AddForce(transform.forward * PUSH_FORCE);
             }
         }
         else // Not grabbing ball
@@ -64,56 +53,18 @@ public class Boy : MonoBehaviour
     private void GrabBall()
     {
         hasBall = true;
-
-        ballColliderRigidbody.gameObject.SetActive(true);
-        ballColliderRigidbody.velocity = Vector3.zero;
-
-        CreateJoint();
-
-
+        ballCollider.SetActive(true);
+        ballCollider.transform.position = 
+            new Vector3(transform.position.x, ball.transform.position.y, transform.position.z) + 
+                transform.forward * ball.DISTANCE_TO_BOY;
         ball.OnGrab();
     }
 
-    private void CreateJoint()
-    {
-        joint = gameObject.AddComponent<HingeJoint>();
-
-        joint.connectedBody = ballColliderRigidbody;
-
-        ballColliderRigidbody.transform.position = new Vector3(
-            transform.position.x + transform.forward.x * DISTANCE,
-            transform.position.y + 0.5f,
-            transform.position.z + transform.forward.z * DISTANCE);
-
-
-        //joint.autoConfigureConnectedAnchor = false;
-        joint.anchor = transform.up * 0.5f; //-transform.forward * DISTANCE; //new Vector3(0, 0, -1);
-        joint.connectedAnchor = Vector3.zero; //new Vector3(0, 0.5f, 0);
-
-        joint.axis = Vector3.right; // new Vector3(-1, 0, 0);
-
-        //joint.xMotion = joint.zMotion = ConfigurableJointMotion.Locked;
-    }
-
-    private void ReleaseBall()
+    public void ReleaseBall()
     {
         hasBall = false;
-        //joint.gameObject.SetActive(false);
-        if (joint != null)
-            Destroy(joint);
-
         ball.OnRelease();
-
-        ballColliderRigidbody.gameObject.SetActive(false);
-    }
-
-    void BallPositionUpdate()
-    {
-        /*
-        Transform ballTransform = ball.transform;
-        ballTransform.position = new Vector3(transform.position.x + transform.forward.x * DISTANCE, ballTransform.position.y, transform.position.z + transform.forward.z * DISTANCE);
-        ballTransform.GetComponent<Rigidbody>().angularVelocity = ballTransform.GetComponent<Rigidbody>().angularVelocity.normalized * ballTransform.GetComponent<Rigidbody>().velocity.magnitude;
-        */   
+        ballCollider.SetActive(false);
     }
 
     public bool HasBall()
@@ -123,7 +74,7 @@ public class Boy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (/*!hasBall && */other.transform.CompareTag("Ball") || other.transform.CompareTag("Ball Collider"))
+        if (!hasBall && other.transform.CompareTag("Ball"))
         {
             grabBallTextBox.SetActive(true);
             ballInRange = true;
@@ -139,7 +90,7 @@ public class Boy : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.transform.CompareTag("Ball") || other.transform.CompareTag("Ball Collider"))
+        if (other.gameObject.CompareTag("Ball"))
         {
             grabBallTextBox.SetActive(false);
             ballInRange = false;

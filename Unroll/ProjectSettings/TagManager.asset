@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Ball
   - Key
-  - Ball Collider
   layers:
   - Default
   - TransparentFX
@@ -21,7 +20,7 @@ TagManager:
   - Breakable Blocks
   - Boy
   - Ball Collider
-  - 
+  - Box
   - 
   - 
   - 
