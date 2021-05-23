@@ -132,7 +132,7 @@ public class Ball : MonoBehaviour
         ballCollider.enabled = false;
         myCharacterController.enabled = true;
         characterMovement.enabled = true;
-        Vector3 newPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y * -1f, gameObject.transform.position.z);
+        Vector3 newPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1 , gameObject.transform.position.z);
         ecmTransform.position = newPos;
         ecmTransform.rotation = Quaternion.identity;
         ballCam.gameObject.SetActive(true);
