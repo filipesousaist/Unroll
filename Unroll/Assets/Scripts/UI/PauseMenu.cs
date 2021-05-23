@@ -6,12 +6,15 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
 
+    public LoadZone load;
+
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUI;
 
     private void Awake()
     {
+        load = FindObjectOfType<LoadZone>();
         Cursor.visible = false;
     }
 
@@ -59,6 +62,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         GameIsPaused = false;
+        load.SaveGame();
         SceneManager.LoadScene(0);
     }
 }
