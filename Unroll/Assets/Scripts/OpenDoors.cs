@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OpenDoors : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class OpenDoors : MonoBehaviour
     private bool canOpenDoor = false;
 
     public GameObject OpenDoorTextBox;
+
+    public LoadZone load;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -43,6 +46,7 @@ public class OpenDoors : MonoBehaviour
                 lock_.SetActive(false);
                 Boy.hasKey = false;
                 OpenDoorTextBox.SetActive(false);
+                load.FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
             }
         }
     }
