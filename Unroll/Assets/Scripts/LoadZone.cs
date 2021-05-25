@@ -11,15 +11,22 @@ public class LoadZone : MonoBehaviour
     public Animator animator;
 
     private int levelToLoad;
+    private int levelReached;
+    private List<string> idsCollected = new List<string>();
 
     private void Start()
     {
+        LoadGame();
         levelToLoad = SceneManager.GetActiveScene().buildIndex;
     }
 
     public void FadeToLevel (int levelIndex)
     {
         levelToLoad = levelIndex;
+        if (levelReached < levelToLoad)
+        {
+            levelReached = levelToLoad;
+        }
         animator.SetTrigger("FadeOut");
     }
 
@@ -28,8 +35,19 @@ public class LoadZone : MonoBehaviour
         return levelToLoad;
     }
 
+    public int GetMaxLevel()
+    {
+        return levelReached;
+    }
+
+    public void Collect(string id)
+    {
+        idsCollected.Add(id);
+    }
+
     public void OnFadeComplete()
     {
+
         SaveGame();
 
         SceneManager.LoadScene(levelToLoad);
@@ -41,6 +59,23 @@ public class LoadZone : MonoBehaviour
         FileStream file = File.Create(Application.persistentDataPath + "/MySaveData.dat");
         SaveData data = new SaveData();
         data.currentLevel = levelToLoad;
+        if (levelToLoad > levelReached)
+        {
+            data.levelReached = levelToLoad;
+            levelReached = levelToLoad;
+        }
+        else
+        {
+            data.levelReached = levelReached;
+        }
+
+        /*foreach(string id in idsCollected)
+        {
+            data.collectibles[id] = true;
+        }*/
+
+        idsCollected.Clear();
+
         bf.Serialize(file, data);
         file.Close();
     }
@@ -54,17 +89,50 @@ public class LoadZone : MonoBehaviour
             SaveData data = (SaveData)bf.Deserialize(file);
             file.Close();
             levelToLoad = data.currentLevel;
+            if (data.levelReached > levelReached)
+            {
+                levelReached = data.levelReached;
+            }
         }
         else
         {
             levelToLoad = 1;
+            levelReached = 0;
         }
     }
+
+    public void GetCollectiblesForLevel(string levelId)
+    {
+        idsCollected.Clear();
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Open(Application.persistentDataPath + "/MySaveData.dat", FileMode.Open);
+        SaveData data = (SaveData)bf.Deserialize(file);
+        file.Close();
+
+        foreach (string collectible in data.collectibles.Keys)
+        {
+            if (collectible.Contains(levelId))
+            {
+                if (!data.collectibles[collectible])
+                {
+                    idsCollected.Add(collectible);
+                }
+            }
+        }
+    }
+
+    public bool IsCollected(string id)
+    {
+        return idsCollected.Contains(id);
+    }
+        
 
     [Serializable]
     class SaveData
     {
         public int currentLevel;
+        public int levelReached;
+        public Dictionary<string, bool> collectibles;
     }
 
 }

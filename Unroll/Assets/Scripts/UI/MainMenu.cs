@@ -8,6 +8,11 @@ public class MainMenu : MonoBehaviour
 {
     public LoadZone load;
 
+    private void Start()
+    {
+        load.LoadGame();
+    }
+
     public void PlayGame()
     {
         load.LoadGame();

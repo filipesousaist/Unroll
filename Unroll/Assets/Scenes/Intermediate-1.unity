@@ -1484,6 +1484,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 280789483}
     m_Modifications:
+    - target: {fileID: 5652269930478245669, guid: 4979dc2c826e1dd448e9f052b2ad46f5,
+        type: 3}
+      propertyPath: id
+      value: inter1_cop
+      objectReference: {fileID: 0}
     - target: {fileID: 5715410924697963406, guid: 4979dc2c826e1dd448e9f052b2ad46f5,
         type: 3}
       propertyPath: m_Mesh
@@ -1564,6 +1569,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Copper Pyramid
       objectReference: {fileID: 0}
+    - target: {fileID: 8137067791380896551, guid: 4979dc2c826e1dd448e9f052b2ad46f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8734440496940720825, guid: 4979dc2c826e1dd448e9f052b2ad46f5,
         type: 3}
       propertyPath: m_Mesh
@@ -1586,6 +1596,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 280789483}
+  - component: {fileID: 280789484}
   m_Layer: 0
   m_Name: Collectibles
   m_TagString: Untagged
@@ -1610,6 +1621,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &280789484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280789482}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d553267df343fcf4eb732a87b1f65843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  load: {fileID: 0}
+  levelId: inter1
 --- !u!1 &285965362
 GameObject:
   m_ObjectHideFlags: 0
@@ -31618,7 +31643,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2114
+  m_Name: pb_Mesh-5278
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -35223,7 +35248,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2498
+  m_Name: pb_Mesh-5662
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -35492,6 +35517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284a7f2201016424589a2eb4082420b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  load: {fileID: 0}
   pauseMenuUI: {fileID: 1719483450}
 --- !u!1001 &561537043
 PrefabInstance:
@@ -44061,6 +44087,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 280789483}
     m_Modifications:
+    - target: {fileID: 5055375818480526654, guid: 53419464d7fa1764ea20b086c5352248,
+        type: 3}
+      propertyPath: id
+      value: inter1_gold
+      objectReference: {fileID: 0}
     - target: {fileID: 5118798372914133397, guid: 53419464d7fa1764ea20b086c5352248,
         type: 3}
       propertyPath: m_Mesh
@@ -44145,6 +44176,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Gold Pyramid
+      objectReference: {fileID: 0}
+    - target: {fileID: 8697581182379977020, guid: 53419464d7fa1764ea20b086c5352248,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53419464d7fa1764ea20b086c5352248, type: 3}
@@ -46153,7 +46189,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2414
+  m_Name: pb_Mesh-5578
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -50289,6 +50325,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Silver Pyramid
       objectReference: {fileID: 0}
+    - target: {fileID: 4975300973408112989, guid: dbe48c4c91c94cd4ab65c90867f0b413,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4975300973408112998, guid: dbe48c4c91c94cd4ab65c90867f0b413,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -50369,6 +50410,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 543448746}
+    - target: {fileID: 8905754349131898207, guid: dbe48c4c91c94cd4ab65c90867f0b413,
+        type: 3}
+      propertyPath: id
+      value: inter1_sil
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbe48c4c91c94cd4ab65c90867f0b413, type: 3}
 --- !u!4 &2094649663 stripped
