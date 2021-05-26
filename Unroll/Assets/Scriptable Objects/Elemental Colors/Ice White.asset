@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Ice White
   m_EditorClassIdentifier: 
   ballMaterial: {fileID: 2100000, guid: eff9bd1fc3971e7499e63b512110dfef, type: 2}
+  color: White

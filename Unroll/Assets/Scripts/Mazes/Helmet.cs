@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Helmet : MonoBehaviour
 {
+    public GameObject useHelmetTextBox;
+
     public MeshRenderer myRenderer;
     public Material greenMaterial;
     public Material redMaterial;
@@ -22,6 +24,7 @@ public class Helmet : MonoBehaviour
     {
         if (other.gameObject.name.Equals("Boy") && activated)
         {
+            useHelmetTextBox.SetActive(true);
             canUse = true;
         }
     }
@@ -30,6 +33,7 @@ public class Helmet : MonoBehaviour
     {
         if (other.gameObject.name.Equals("Boy"))
         {
+            useHelmetTextBox.SetActive(false);
             canUse = false;
         }
     }

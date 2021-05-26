@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using ECM.Walkthrough.OverShoulderCamera;
 using ECM.Components;
 
 public class Ball : MonoBehaviour
 {
     public ElementalColor color;
+    public TMP_Text ballColorTextBox;
 
     public float DISTANCE_TO_BOY;
     public float STICK_THRESHOLD;
@@ -58,6 +60,8 @@ public class Ball : MonoBehaviour
 
     private void Update()
     {
+        ballColorTextBox.text = color.color;
+
         if (boy.HasBall())
         {
 
@@ -136,6 +140,7 @@ public class Ball : MonoBehaviour
         ecmTransform.position = newPos;
         ecmTransform.rotation = Quaternion.identity;
         ballCam.gameObject.SetActive(true);
+        ballColorTextBox.gameObject.transform.parent.gameObject.SetActive(true);
         gameObject.transform.localPosition = new Vector3(0, 1f, 0);
     }
 
@@ -147,5 +152,7 @@ public class Ball : MonoBehaviour
         myCharacterController.enabled = false;
         characterMovement.enabled = false;
         ballCam.gameObject.SetActive(false);
+        ballColorTextBox.gameObject.transform.parent.gameObject.SetActive(false);
+
     }
 }

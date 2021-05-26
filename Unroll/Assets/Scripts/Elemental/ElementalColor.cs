@@ -4,4 +4,5 @@
 public class ElementalColor : ScriptableObject
 {
     public Material ballMaterial;
+    public string color;
 }
