@@ -12,7 +12,7 @@ public class LoadZone : MonoBehaviour
 
     private int levelToLoad;
     private int levelReached;
-    private List<string> idsCollected = new List<string>();
+    private readonly List<string> idsCollected = new List<string>();
 
     private void Start()
     {
@@ -47,7 +47,6 @@ public class LoadZone : MonoBehaviour
 
     public void OnFadeComplete()
     {
-
         SaveGame();
 
         SceneManager.LoadScene(levelToLoad);
@@ -69,10 +68,16 @@ public class LoadZone : MonoBehaviour
             data.levelReached = levelReached;
         }
 
-        /*foreach(string id in idsCollected)
+        if (data.collectibles == null)
         {
-            data.collectibles[id] = true;
-        }*/
+            foreach (string levelName in Const.LEVEL_NAMES)
+                if (!levelName.Contains("Easy"))
+                    foreach (Collectible.Metal metalName in Const.COLLECTIBLE_METALS)
+                        data.collectibles.Add(levelName + "-" + metalName, true);
+        }
+
+        foreach (string id in idsCollected)
+            data.collectibles.Add(id, true);
 
         idsCollected.Clear();
 
@@ -98,6 +103,7 @@ public class LoadZone : MonoBehaviour
         {
             levelToLoad = 1;
             levelReached = 0;
+            SaveGame();
         }
     }
 
@@ -109,16 +115,9 @@ public class LoadZone : MonoBehaviour
         SaveData data = (SaveData)bf.Deserialize(file);
         file.Close();
 
-        foreach (string collectible in data.collectibles.Keys)
-        {
-            if (collectible.Contains(levelId))
-            {
-                if (!data.collectibles[collectible])
-                {
-                    idsCollected.Add(collectible);
-                }
-            }
-        }
+        foreach (string collectibleId in data.collectibles.Keys)
+            if (collectibleId.Contains(levelId) && data.collectibles[collectibleId])
+                idsCollected.Add(collectibleId);
     }
 
     public bool IsCollected(string id)

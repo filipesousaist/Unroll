@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.IO;
+using System.Linq;
 using UnityEngine.SceneManagement;
 
 public class LevelSelector : MonoBehaviour
@@ -19,15 +19,14 @@ public class LevelSelector : MonoBehaviour
     private Rect iconDimensions;
     private int amountPerPage;
     private int currentLevelCount;
-    private List<string> lines;
+    private List<string> levelNames;
 
     public List<Scene> scenes;
 
     // Start is called before the first frame update
     void Start()
     {
-        string path = Application.dataPath + "/LevelNames.txt";
-        lines = new List<string>(File.ReadAllLines(path));
+        levelNames = Const.LEVEL_NAMES.ToList();
 
         panelDimensions = levelHolder.GetComponent<RectTransform>().rect;
         iconDimensions = levelIcon.GetComponent<RectTransform>().rect;
@@ -72,16 +71,10 @@ public class LevelSelector : MonoBehaviour
             GameObject icon = Instantiate(levelIcon);
             icon.transform.SetParent(thisCanvas.transform, false);
             icon.transform.SetParent(parentObject.transform);
-            icon.name = lines[0];
-            icon.GetComponentInChildren<TextMeshProUGUI>().SetText(lines[0]);
+            icon.name = levelNames[0];
+            icon.GetComponentInChildren<TextMeshProUGUI>().SetText(levelNames[0]);
             icon.GetComponent<LoadSelectedLevel>().levelId = currentLevelCount;
-            lines.Remove(lines[0]);
+            levelNames.Remove(levelNames[0]);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Collectible : MonoBehaviour
 {
-    public string id;
+    public enum Metal
+    {
+        Copper, Silver, Gold
+    }
+    public Metal metal;
     public LoadZone load;
 
     private readonly float ROTATE_SPEED = 60;
-/*
-    private void Start()
-    {
-        load = FindObjectOfType<LoadZone>();
-    }*/
 
     // Update is called once per frame
     private void Update()
@@ -27,7 +27,12 @@ public class Collectible : MonoBehaviour
     private void PickUp()
     {
         // TODO: Add to collection
-        //load.Collect(id);
+        load.Collect(ToString());
         Destroy(gameObject);
+    }
+
+    public override string ToString()
+    {
+        return SceneManager.GetActiveScene().name + "-" + metal;
     }
 }

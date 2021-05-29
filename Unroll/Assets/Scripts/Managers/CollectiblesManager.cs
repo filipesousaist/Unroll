@@ -20,13 +20,8 @@ public class CollectiblesManager : MonoBehaviour
     {
         collectibles = FindObjectsOfType<Collectible>();
         load.GetCollectiblesForLevel(levelId);
-        foreach(Collectible collectible in collectibles)
-        {
-            if (load.IsCollected(collectible.id))
-            {
-                collectible.gameObject.SetActive(true);
-            }
-        }
+        foreach (Collectible collectible in collectibles)
+            if (load.IsCollected(collectible.metal.ToString()))
+                collectible.gameObject.SetActive(false);
     }
-
 }
