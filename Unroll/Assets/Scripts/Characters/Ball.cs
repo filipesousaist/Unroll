@@ -60,7 +60,10 @@ public class Ball : MonoBehaviour
 
     private void Update()
     {
-        ballColorTextBox.text = color.color;
+        if (ballColorTextBox != null)
+        {
+            ballColorTextBox.text = color.color;
+        }
 
         if (boy.HasBall())
         {
