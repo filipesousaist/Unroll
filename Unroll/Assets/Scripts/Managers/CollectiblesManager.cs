@@ -18,10 +18,16 @@ public class CollectiblesManager : MonoBehaviour
 
     private void InitCollectibles()
     {
+        Debug.Log("Initializing");
         collectibles = FindObjectsOfType<Collectible>();
-        load.GetCollectiblesForLevel(levelId);
-        foreach (Collectible collectible in collectibles)
-            if (load.IsCollected(collectible.metal.ToString()))
-                collectible.gameObject.SetActive(false);
+        Dictionary<string,bool> isCollected = load.GetCollectibles();
+        if (isCollected != null)
+        {
+            foreach (string name in isCollected.Keys)
+                Debug.Log(name);
+            foreach (Collectible collectible in collectibles) 
+                if (isCollected[collectible.ToString()])
+                    Destroy(collectible.gameObject);
+        }
     }
 }

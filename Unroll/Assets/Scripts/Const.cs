@@ -15,4 +15,9 @@ public static class Const
         Collectible.Metal.Silver,
         Collectible.Metal.Gold
     };
+
+    public static readonly Dictionary<string, string> LEVEL_TO_SHAPE = new Dictionary<string, string>()
+    {
+        {"Intermediate-1", "Pyramid" }
+    };
 }

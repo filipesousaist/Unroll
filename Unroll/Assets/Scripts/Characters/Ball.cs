@@ -47,7 +47,6 @@ public class Ball : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody>();
         myCollider = GetComponent<SphereCollider>();
         blocksManager = FindObjectOfType<BlocksManager>();
-        Debug.Log(this.gameObject.transform.position);
     }
 
     private void Start()
