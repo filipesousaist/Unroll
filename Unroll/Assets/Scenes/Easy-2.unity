@@ -3028,6 +3028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284a7f2201016424589a2eb4082420b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  load: {fileID: 0}
   pauseMenuUI: {fileID: 1719483450}
 --- !u!1001 &556312073
 PrefabInstance:
@@ -8840,6 +8841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {fileID: 11400000, guid: 1a50fecfbdaff3d468c0d06b86147877, type: 2}
+  ballColorTextBox: {fileID: 1721998054}
   DISTANCE_TO_BOY: 1
   STICK_THRESHOLD: 0.6
   RELEASE_THRESHOLD: 0.9
@@ -8849,7 +8851,7 @@ MonoBehaviour:
   ballRigidbody: {fileID: 1741255556}
   ecmRigidbody: {fileID: 0}
   ecmCollider: {fileID: 0}
-  ballCollider: {fileID: 1741255557}
+  ballCollider: {fileID: 131201764}
   myCharacterController: {fileID: 0}
   characterMovement: {fileID: 0}
   ballCam: {fileID: 0}
