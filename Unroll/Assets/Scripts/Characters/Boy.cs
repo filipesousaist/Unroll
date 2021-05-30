@@ -168,6 +168,7 @@ public class Boy : MonoBehaviour
     private void ReportInformation(InformationToSend information)
     {
         AnalyticsEvent.Custom("periodic_info", new Dictionary<string, object>{
+            { "random_number", Global.random },
             { "level", information.level },
             { "press_E", information.pressE },
             { "ball_grabbed", information.ballGrabbed },

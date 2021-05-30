@@ -68,6 +68,7 @@ public class OpenDoors : MonoBehaviour
     {
         AnalyticsEvent.Custom("time_to_complete_level", new Dictionary<string, object>
         {
+            { "random_number", Global.random },
             { "time", time },
             { "level", level }
         });
