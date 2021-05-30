@@ -110,7 +110,7 @@ public class Boy : MonoBehaviour
 
     public void HasDied()
     {
-        information.numberOfDeaths++;
+        information.numberOfDeaths ++;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -120,11 +120,6 @@ public class Boy : MonoBehaviour
             grabBallTextBox.SetActive(true);
             ballInRange = true;
         }
-
-        /*if (other.transform.CompareTag("Key"))
-        {
-            GrabKey(other.gameObject);
-        }*/
     }
 
     public void GrabKey(GameObject key)
