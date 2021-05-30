@@ -37,13 +37,17 @@ public class Helmet : MonoBehaviour
         {
             useHelmetTextBox.SetActive(false);
             canUse = false;
+            if (ballMode)
+            {
+                controlBall();
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && canUse)
+        if(Input.GetKeyDown(KeyCode.F) && canUse)
         {
             controlBall();
         }
@@ -63,13 +67,16 @@ public class Helmet : MonoBehaviour
         if (!ballMode)
         {
             boy.GetComponent<MyCharacterController>().enabled = false;
+            boy.GetComponent<CharacterMovement>().enabled = false;
             boyCamera.gameObject.SetActive(false);
             ball.ActivateControl();
             ballMode = true;
+            boy.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
         else
         {
             boy.GetComponent<MyCharacterController>().enabled = true;
+            boy.GetComponent<CharacterMovement>().enabled = true;
             boyCamera.gameObject.SetActive(true);
             ball.DeactivateControl();
             ballMode = false;
