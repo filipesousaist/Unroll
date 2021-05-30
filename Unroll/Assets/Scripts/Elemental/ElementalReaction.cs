@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ElementalReaction : MonoBehaviour
 {
-
     public ElementalColor reactionColor;
+    public ElementalColor neutralColor;
     public Material cubeMaterial;
 
     public Vector3 boyInitPos;
@@ -31,7 +31,9 @@ public class ElementalReaction : MonoBehaviour
             ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
             ball.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             boy.transform.position = boyInitPos;
+            boy.HasDied();
             ball.transform.position = ballInitPos;
+            ball.ChangeColor(neutralColor);
         }
     }
 

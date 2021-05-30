@@ -7,7 +7,8 @@ public static class Const
         "Easy-1",
         "Easy-2",
         "Easy-3",
-        "Intermediate-1"
+        "Intermediate-1",
+        "Hard-1"
     };
 
     public static readonly Collectible.Metal[] COLLECTIBLE_METALS = new Collectible.Metal[]{
@@ -18,6 +19,7 @@ public static class Const
 
     public static readonly Dictionary<string, string> LEVEL_TO_SHAPE = new Dictionary<string, string>()
     {
-        { "Intermediate-1", "Pyramid" }
+        { "Intermediate-1", "Pyramid" },
+        { "Hard-1", "Diamond" }
     };
 }

@@ -907,6 +907,7 @@ MonoBehaviour:
   boy: {fileID: 0}
   lock_: {fileID: 5486429952007779612}
   OpenDoorTextBox: {fileID: 0}
+  load: {fileID: 0}
 --- !u!65 &5486429952007779606
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -918,8 +919,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6045302, y: 0.27578983, z: 1.245233}
-  m_Center: {x: 0.19773495, y: -0.105877616, z: -0.44201177}
+  m_Size: {x: 0.3, y: 0.27578983, z: 0.6}
+  m_Center: {x: 0.4, y: -0.105877616, z: -0.42}
 --- !u!1 &5486429952027868994
 GameObject:
   m_ObjectHideFlags: 0

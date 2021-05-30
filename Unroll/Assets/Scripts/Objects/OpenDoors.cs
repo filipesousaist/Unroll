@@ -25,12 +25,14 @@ public class OpenDoors : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        canOpenDoor = true;
+        if (other.gameObject.CompareTag("Player"))
+            canOpenDoor = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        canOpenDoor = false;
+        if (other.gameObject.CompareTag("Player"))
+            canOpenDoor = false;
     }
 
     // Update is called once per frame
@@ -54,18 +56,20 @@ public class OpenDoors : MonoBehaviour
                 lock_.SetActive(false);
                 Boy.hasKey = false;
                 OpenDoorTextBox.SetActive(false);
-                ReportTimeToCompleteLevel(Time.time - startLevelTime);
+                ReportTimeToCompleteLevel(Time.time - startLevelTime, load.GetLevelToLoad());
+                boy.ForceReportInformation();
                 Debug.Log(Time.time - startLevelTime);
                 load.FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
             }
         }
     }
 
-    private void ReportTimeToCompleteLevel(float time)
+    private void ReportTimeToCompleteLevel(float time, int level)
     {
         AnalyticsEvent.Custom("time_to_complete_level", new Dictionary<string, object>
         {
-            { "time", time }
+            { "time", time },
+            { "level", level }
         });
     }
 }

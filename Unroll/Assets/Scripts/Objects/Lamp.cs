@@ -19,7 +19,7 @@ public class Lamp : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.Equals(ball.gameObject) && ball.color.Equals(reactionColor))
+        if (collision.gameObject.CompareTag("Ball") && ball.color.Equals(reactionColor))
         {
             spotLight.enabled = true;
             plane.SetActive(true);
