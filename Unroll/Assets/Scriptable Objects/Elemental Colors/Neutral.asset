@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Neutral
   m_EditorClassIdentifier: 
   ballMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  blocksMaterial: {fileID: 0}
-  powerupsMaterial: {fileID: 0}
+  color: Colorless

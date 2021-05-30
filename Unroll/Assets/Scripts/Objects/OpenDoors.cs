@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Analytics;
 
 public class OpenDoors : MonoBehaviour
 {
@@ -14,6 +15,13 @@ public class OpenDoors : MonoBehaviour
     public GameObject OpenDoorTextBox;
 
     public LoadZone load;
+
+    private float startLevelTime;
+
+    private void Start()
+    {
+        startLevelTime = Time.time;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -46,8 +54,18 @@ public class OpenDoors : MonoBehaviour
                 lock_.SetActive(false);
                 Boy.hasKey = false;
                 OpenDoorTextBox.SetActive(false);
+                ReportTimeToCompleteLevel(Time.time - startLevelTime);
+                Debug.Log(Time.time - startLevelTime);
                 load.FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
             }
         }
+    }
+
+    private void ReportTimeToCompleteLevel(float time)
+    {
+        AnalyticsEvent.Custom("time_to_complete_level", new Dictionary<string, object>
+        {
+            { "time", time }
+        });
     }
 }

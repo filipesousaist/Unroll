@@ -4276,7 +4276,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48356
+  m_Name: pb_Mesh26254
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7471,6 +7471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {fileID: 11400000, guid: 1a50fecfbdaff3d468c0d06b86147877, type: 2}
+  ballColorTextBox: {fileID: 0}
   DISTANCE_TO_BOY: 1
   STICK_THRESHOLD: 0.6
   RELEASE_THRESHOLD: 0.9
@@ -7480,7 +7481,7 @@ MonoBehaviour:
   ballRigidbody: {fileID: 1741255556}
   ecmRigidbody: {fileID: 0}
   ecmCollider: {fileID: 0}
-  ballCollider: {fileID: 1741255557}
+  ballCollider: {fileID: 131201764}
   myCharacterController: {fileID: 0}
   characterMovement: {fileID: 0}
   ballCam: {fileID: 0}

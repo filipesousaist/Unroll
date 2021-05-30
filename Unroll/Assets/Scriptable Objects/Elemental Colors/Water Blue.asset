@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Water Blue
   m_EditorClassIdentifier: 
   ballMaterial: {fileID: 2100000, guid: db96e04f47f6c2a44bc6bb90f93602ec, type: 2}
-  blocksMaterial: {fileID: 2100000, guid: 4ae96264785203a449396439caac5260, type: 2}
-  powerupsMaterial: {fileID: 2100000, guid: 4bd6c621ee712494b80c4717e6a45a19, type: 2}
+  color: Blue
