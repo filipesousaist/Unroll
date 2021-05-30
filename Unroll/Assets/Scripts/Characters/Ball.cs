@@ -157,4 +157,12 @@ public class Ball : MonoBehaviour
         ballColorTextBox.gameObject.transform.parent.gameObject.SetActive(false);
 
     }
+
+    /*private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("Key"))
+        {
+            boy.GrabKey(other.gameObject);
+        }
+    }*/
 }

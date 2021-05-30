@@ -7,6 +7,7 @@ public class LeverScript : MonoBehaviour
     public Transform plank;
     public Boy boy;
     bool canInteract = false;
+    bool activated = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,12 +27,10 @@ public class LeverScript : MonoBehaviour
             canInteract = false;
         }
 
-        if (canInteract)
+        if (canInteract && Input.GetKeyDown(KeyCode.F))
         {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                plank.Rotate(0, 0, 10);
-            }
+            activated = !activated;
+            plank.Rotate(0, 0, activated ? 20 : -20);
         }
     }
 }
