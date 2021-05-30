@@ -71,4 +71,11 @@ public class PauseMenu : MonoBehaviour
         load.SaveGame();
         SceneManager.LoadScene(0);
     }
+
+    public void MainMenuLastScene()
+    {
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+        SceneManager.LoadScene(0);
+    }
 }
