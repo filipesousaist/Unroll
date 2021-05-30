@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using ECM.Walkthrough.OverShoulderCamera;
+using ECM.Components;
 using UnityEngine;
 
 public class Helmet : MonoBehaviour
@@ -60,14 +62,14 @@ public class Helmet : MonoBehaviour
     public void controlBall() {
         if (!ballMode)
         {
-            boy.gameObject.SetActive(false);
+            boy.GetComponent<MyCharacterController>().enabled = false;
             boyCamera.gameObject.SetActive(false);
             ball.ActivateControl();
             ballMode = true;
         }
         else
         {
-            boy.gameObject.SetActive(true);
+            boy.GetComponent<MyCharacterController>().enabled = true;
             boyCamera.gameObject.SetActive(true);
             ball.DeactivateControl();
             ballMode = false;

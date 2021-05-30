@@ -28,5 +28,4 @@ public class MainMenu : MonoBehaviour
         EditorApplication.isPlaying = false;
 #endif
     }
-
 }
