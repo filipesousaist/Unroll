@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUI;
+    public GameObject controlsUI;
 
     private void Awake()
     {
@@ -37,6 +38,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        controlsUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
         Cursor.visible = false;
