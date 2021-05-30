@@ -205,7 +205,7 @@ MonoBehaviour:
 
 
     Press
-    "E" when below the helmet to actIvate It and control the ball'
+    "F" when below the helmet to actIvate It and control the ball'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 56c6bb91e8947234f8513b4152439e1b, type: 2}
   m_sharedMaterial: {fileID: -876190378485308094, guid: 56c6bb91e8947234f8513b4152439e1b,
@@ -275,6 +275,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 586554173276139967}
   m_maskType: 0
+  _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
 --- !u!1 &586554173538679999
@@ -1786,8 +1787,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b6bac1421ddde4692877671a697418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useHelmetTextBox: {fileID: 0}
   myRenderer: {fileID: 586554174433166068}
-  greenMaterial: {fileID: 2100000, guid: adc322d3f4bda4542ae336569f99fec6, type: 2}
+  greenMaterial: {fileID: 2100000, guid: 41220b2dcda31684787728fb40333555, type: 2}
   redMaterial: {fileID: 2100000, guid: ab05adfd956245d48928c21f1a9ed4a5, type: 2}
   boy: {fileID: 0}
   ball: {fileID: 0}

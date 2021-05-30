@@ -25,12 +25,14 @@ public class OpenDoors : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        canOpenDoor = true;
+        if (other.gameObject.CompareTag("Player"))
+            canOpenDoor = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        canOpenDoor = false;
+        if (other.gameObject.CompareTag("Player"))
+            canOpenDoor = false;
     }
 
     // Update is called once per frame

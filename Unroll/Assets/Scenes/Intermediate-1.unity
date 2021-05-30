@@ -38334,7 +38334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   col: {fileID: 702963084}
   myRenderer: {fileID: 702963086}
-  material: {fileID: 2100000, guid: adc322d3f4bda4542ae336569f99fec6, type: 2}
+  material: {fileID: 2100000, guid: 41220b2dcda31684787728fb40333555, type: 2}
   mazeDoor: {fileID: 2041011730}
 --- !u!1 &705507993
 GameObject:
@@ -38786,7 +38786,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: E - Mind Control
+  m_text: F - Toggle Helmet
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -48838,6 +48838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reactionColor: {fileID: 11400000, guid: 09399a7f6f8bc1140b2926a286e9f14b, type: 2}
+  neutralColor: {fileID: 0}
   cubeMaterial: {fileID: 2100000, guid: b52e438f1d8c7544aa55b36f4c4a765e, type: 2}
   boyInitPos: {x: -2.3, y: 0.6, z: 4.8}
   ballInitPos: {x: -1.14, y: 0.6, z: 4.8}
@@ -49010,7 +49011,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh65526
+  m_Name: pb_Mesh272900
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
