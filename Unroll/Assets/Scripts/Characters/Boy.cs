@@ -19,9 +19,18 @@ public class Boy : MonoBehaviour
     private bool hasBall = false;
     private bool ballInRange;
 
+    private InformationToSend information;
+    private float sendTimer = 0;
+
+    private int currentLevel;
+    private LoadZone load;
+
     private void Start()
     {
         ReleaseBall();
+        information = new InformationToSend();
+        load = FindObjectOfType<LoadZone>();
+        information.level = currentLevel = load.GetLevelToLoad();
     }
 
     private void Update()
@@ -31,7 +40,7 @@ public class Boy : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) || !ballInRange)
             {
                 ReleaseBall();
-                ReportPressE(false);
+                information.pressE++;
             }
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -51,8 +60,29 @@ public class Boy : MonoBehaviour
                 dropBallTextBox.SetActive(true);
                 hardPushTextBox.SetActive(true);
                 GrabBall();
-                ReportPressE(true);
+                information.pressE++;
+                information.ballGrabbed++;
             }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                Ball tempBall = FindObjectOfType<Ball>();
+                if ((tempBall.transform.position - transform.position).magnitude < 3)
+                {
+                    information.pressE++;
+                }
+            }
+        }
+
+        if (sendTimer > 60)
+        {
+            ReportInformation(information);
+            information = new InformationToSend();
+            information.level = currentLevel;
+            sendTimer = 0;
+        }
+        else
+        {
+            sendTimer += Time.deltaTime;
         }
     }
 
@@ -76,6 +106,11 @@ public class Boy : MonoBehaviour
     public bool HasBall()
     {
         return hasBall;
+    }
+
+    public void HasDied()
+    {
+        information.numberOfDeaths++;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -107,10 +142,50 @@ public class Boy : MonoBehaviour
         return hasKey;
     }
 
-    private void ReportPressE(bool ballGrabed)
+    public void CollectiblePickedUp(Collectible.Metal metal)
     {
-        AnalyticsEvent.Custom("press_E", new Dictionary<string, object>{
-            { "ball_grabed", ballGrabed }
+        switch(metal){
+            case Collectible.Metal.Copper:
+                information.copperCollectible++;
+                break;
+            case Collectible.Metal.Silver:
+                information.silverCollectible++;
+                break;
+            case Collectible.Metal.Gold:
+                information.goldCollectible++;
+                break;
+            default:
+                Debug.LogWarning("No Corresponding Metal Found");
+                break;
+        }
+    }
+
+    public void ForceReportInformation()
+    {
+        ReportInformation(information);
+    }
+
+    private void ReportInformation(InformationToSend information)
+    {
+        AnalyticsEvent.Custom("periodic_info", new Dictionary<string, object>{
+            { "level", information.level },
+            { "press_E", information.pressE },
+            { "ball_grabbed", information.ballGrabbed },
+            { "copper_colectibles", information.copperCollectible },
+            { "silver_colectibles", information.silverCollectible },
+            { "gold_colectibles", information.goldCollectible },
+            { "number_of_deaths", information.numberOfDeaths }
         });
+    }
+
+    struct InformationToSend
+    {
+        public int level;
+        public int pressE;
+        public int ballGrabbed;
+        public int copperCollectible;
+        public int silverCollectible;
+        public int goldCollectible;
+        public int numberOfDeaths;
     }
 }

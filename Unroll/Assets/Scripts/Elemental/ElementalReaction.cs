@@ -31,6 +31,7 @@ public class ElementalReaction : MonoBehaviour
             ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
             ball.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             boy.transform.position = boyInitPos;
+            boy.HasDied();
             ball.transform.position = ballInitPos;
         }
     }

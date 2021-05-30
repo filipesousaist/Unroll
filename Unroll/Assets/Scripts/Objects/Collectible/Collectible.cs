@@ -10,12 +10,14 @@ public class Collectible : MonoBehaviour
     public Metal metal;
 
     private LoadZone load;
+    private Boy boy;
 
     private readonly float ROTATE_SPEED = 60;
 
     private void Awake()
     {
         load = FindObjectOfType<LoadZone>();
+        boy = FindObjectOfType<Boy>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class Collectible : MonoBehaviour
     public void PickUp()
     {
         // TODO: Add to collection
+        boy.CollectiblePickedUp(metal);
         load.Collect(ToString());
         Destroy(gameObject);
     }

@@ -12,10 +12,13 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
+    private Boy boy;
+
     private void Awake()
     {
         load = FindObjectOfType<LoadZone>();
         Cursor.visible = false;
+        boy = FindObjectOfType<Boy>();
     }
 
     // Update is called once per frame
@@ -60,6 +63,7 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenu()
     {
+        boy.ForceReportInformation();
         Time.timeScale = 1f;
         GameIsPaused = false;
         load.SaveGame();
