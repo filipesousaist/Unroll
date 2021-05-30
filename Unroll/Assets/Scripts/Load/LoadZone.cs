@@ -115,7 +115,7 @@ public class LoadZone : MonoBehaviour
 
         isCollected = new Dictionary<string, bool>();
         foreach (string levelName in Const.LEVEL_NAMES)
-            if (!levelName.Contains("Easy"))
+            if (levelName.Contains("Intermediate") || levelName.Contains("Hard"))
                 foreach (Collectible.Metal metalName in Const.COLLECTIBLE_METALS)
                     isCollected.Add(levelName + "-" + metalName, false);
 

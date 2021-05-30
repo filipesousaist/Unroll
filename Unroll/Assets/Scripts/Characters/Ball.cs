@@ -66,7 +66,6 @@ public class Ball : MonoBehaviour
 
         if (boy.HasBall())
         {
-
             UpdatePosition();
             UpdateRotation();
         }

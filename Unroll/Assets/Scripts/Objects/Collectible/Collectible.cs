@@ -12,6 +12,9 @@ public class Collectible : MonoBehaviour
     private LoadZone load;
     private Boy boy;
 
+    public GameObject messageObject;
+    public GameObject pauseMenu;
+
     private readonly float ROTATE_SPEED = 60;
 
     private void Awake()
@@ -29,9 +32,23 @@ public class Collectible : MonoBehaviour
     public void PickUp()
     {
         // TODO: Add to collection
+        ShowMessage();
         boy.CollectiblePickedUp(metal);
         load.Collect(ToString());
         Destroy(gameObject);
+    }
+
+    public void ShowMessage()
+    {
+        messageObject.SetActive(true);
+        Cursor.visible = true;
+    }
+
+    public void HideMessage()
+    {
+        messageObject.SetActive(false);
+        if (pauseMenu != null && !pauseMenu.gameObject.activeSelf)
+            Cursor.visible = false;
     }
 
     public override string ToString()
