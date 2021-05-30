@@ -28,10 +28,13 @@ public class Block : MonoBehaviour
             blocksManager.RemoveBlock(this);
             Destroy(transform.parent.gameObject);
 
-            if (ballRigidbody.velocity.magnitude < BALL_SPEED_DECREASE)
-                ballRigidbody.velocity = Vector3.zero;
-            else
-                ballRigidbody.velocity -= ballRigidbody.velocity.normalized * BALL_SPEED_DECREASE;
+            if (ball.color.color != "Orange")
+            {
+                if (ballRigidbody.velocity.magnitude < BALL_SPEED_DECREASE)
+                    ballRigidbody.velocity = Vector3.zero;
+                else
+                    ballRigidbody.velocity -= ballRigidbody.velocity.normalized * BALL_SPEED_DECREASE;
+            }
         }    
     }
 
