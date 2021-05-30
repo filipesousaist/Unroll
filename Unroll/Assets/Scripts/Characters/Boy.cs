@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Analytics;
 
 public class Boy : MonoBehaviour
 {
@@ -27,7 +29,10 @@ public class Boy : MonoBehaviour
         if (hasBall)
         {
             if (Input.GetKeyDown(KeyCode.E) || !ballInRange)
+            {
                 ReleaseBall();
+                ReportPressE(false);
+            }
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
@@ -46,6 +51,7 @@ public class Boy : MonoBehaviour
                 dropBallTextBox.SetActive(true);
                 hardPushTextBox.SetActive(true);
                 GrabBall();
+                ReportPressE(true);
             }
         }
     }
@@ -99,5 +105,12 @@ public class Boy : MonoBehaviour
 
     public bool CheckIfHasKey() {
         return hasKey;
+    }
+
+    private void ReportPressE(bool ballGrabed)
+    {
+        AnalyticsEvent.Custom("press_E", new Dictionary<string, object>{
+            { "ball_grabed", ballGrabed }
+        });
     }
 }
