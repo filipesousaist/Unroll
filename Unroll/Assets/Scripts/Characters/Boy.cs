@@ -86,12 +86,17 @@ public class Boy : MonoBehaviour
             ballInRange = true;
         }
 
-        if (other.transform.CompareTag("Key"))
+        /*if (other.transform.CompareTag("Key"))
         {
-            hasKey = true;
-            other.gameObject.SetActive(false);
-            Debug.Log("Key picked up");
-        }
+            GrabKey(other.gameObject);
+        }*/
+    }
+
+    public void GrabKey(GameObject key)
+    {
+        hasKey = true;
+        key.SetActive(false);
+        Debug.Log("Key picked up");
     }
 
     private void OnTriggerExit(Collider other)
