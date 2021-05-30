@@ -4,6 +4,7 @@ public static class Const
 {
     public static readonly string[] LEVEL_NAMES = new string[]
     {
+        "Prolog",
         "Easy-1",
         "Easy-2",
         "Easy-3",
