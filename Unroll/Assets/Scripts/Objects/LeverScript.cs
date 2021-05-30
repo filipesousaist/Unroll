@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LeverScript : MonoBehaviour
 {
+    public Transform anchor;
     public Transform plank;
     public Boy boy;
     bool canInteract = false;
@@ -30,7 +31,8 @@ public class LeverScript : MonoBehaviour
         if (canInteract && Input.GetKeyDown(KeyCode.F))
         {
             activated = !activated;
-            plank.Rotate(0, 0, activated ? 20 : -20);
+            plank.Rotate(0, 0, activated ? -40 : 40);
+            anchor.Rotate(0, 0, activated ? 40 : -40);
         }
     }
 }
