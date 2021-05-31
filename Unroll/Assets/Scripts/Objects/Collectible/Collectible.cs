@@ -44,13 +44,6 @@ public class Collectible : MonoBehaviour
         Cursor.visible = true;
     }
 
-    public void HideMessage()
-    {
-        messageObject.SetActive(false);
-        if (pauseMenu != null && !pauseMenu.gameObject.activeSelf)
-            Cursor.visible = false;
-    }
-
     public override string ToString()
     {
         return SceneManager.GetActiveScene().name + "-" + metal;

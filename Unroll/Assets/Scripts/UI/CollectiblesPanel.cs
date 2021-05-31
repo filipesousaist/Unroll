@@ -32,5 +32,6 @@ public class CollectiblesPanel : MonoBehaviour
         Transform container = collectibleTransform.Find("Container");
         container.Find("?").gameObject.SetActive(false);
         container.Find("Image").gameObject.SetActive(true);
+        collectibleTransform.Find("+").gameObject.SetActive(true);
     }
 }

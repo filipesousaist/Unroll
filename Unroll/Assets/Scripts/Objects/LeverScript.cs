@@ -9,15 +9,33 @@ public class LeverScript : MonoBehaviour
     public Boy boy;
     bool canInteract = false;
     bool activated = false;
+    public GameObject useLeverText;
 
     private void OnTriggerEnter(Collider other)
     {
-        canInteract = true;
+        if (other.gameObject.CompareTag("Player") && !boy.HasBall())
+        {
+            canInteract = true;
+            useLeverText.SetActive(true);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            canInteract = !boy.HasBall();
+            useLeverText.SetActive(!boy.HasBall());
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        canInteract = false;
+        if (other.gameObject.CompareTag("Player") && !boy.HasBall())
+        {
+            canInteract = false;
+            useLeverText.SetActive(false);
+        }
     }
 
     // Update is called once per frame

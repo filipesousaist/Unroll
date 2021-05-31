@@ -1239,6 +1239,21 @@ PrefabInstance:
 
         I just matched with a hot stone'
       objectReference: {fileID: 0}
+    - target: {fileID: 246233964703834573, guid: aa8de5f3f82b33d4e9dc7bd67970ebca,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 129559290}
+    - target: {fileID: 246233964703834573, guid: aa8de5f3f82b33d4e9dc7bd67970ebca,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HideMessage
+      objectReference: {fileID: 0}
+    - target: {fileID: 246233964703834573, guid: aa8de5f3f82b33d4e9dc7bd67970ebca,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa8de5f3f82b33d4e9dc7bd67970ebca, type: 3}
 --- !u!224 &129559288 stripped
@@ -1253,6 +1268,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 129559287}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &129559290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129559289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1109a0a2b795d004888c9b26dcdbc4a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 1917302203}
 --- !u!1 &131201762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1502,6 +1530,21 @@ PrefabInstance:
 
         And together we can break the crack'
       objectReference: {fileID: 0}
+    - target: {fileID: 246233964703834573, guid: aa8de5f3f82b33d4e9dc7bd67970ebca,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 173184963}
+    - target: {fileID: 246233964703834573, guid: aa8de5f3f82b33d4e9dc7bd67970ebca,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HideMessage
+      objectReference: {fileID: 0}
+    - target: {fileID: 246233964703834573, guid: aa8de5f3f82b33d4e9dc7bd67970ebca,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa8de5f3f82b33d4e9dc7bd67970ebca, type: 3}
 --- !u!224 &173184961 stripped
@@ -1516,6 +1559,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 173184960}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &173184963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173184962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1109a0a2b795d004888c9b26dcdbc4a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 1917302203}
 --- !u!1 &199013622
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,7 +1671,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-298572
+  m_Name: pb_Mesh-505090
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -31777,7 +31833,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-303592
+  m_Name: pb_Mesh-510108
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -36113,7 +36169,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: F - Open door / Use helmet
+  m_text: F - Open door / Use helmet / Use lever
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -42543,7 +42599,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-306854
+  m_Name: pb_Mesh-513370
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -44773,6 +44829,7 @@ GameObject:
   - component: {fileID: 1917302207}
   - component: {fileID: 1917302206}
   - component: {fileID: 1917302205}
+  - component: {fileID: 1917302208}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -44860,6 +44917,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917302203}
   m_CullTransparentMesh: 0
+--- !u!114 &1917302208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917302203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1109a0a2b795d004888c9b26dcdbc4a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 1917302203}
 --- !u!43 &1922484466
 Mesh:
   m_ObjectHideFlags: 0
@@ -45299,6 +45369,21 @@ PrefabInstance:
 
         Let go of me!'
       objectReference: {fileID: 0}
+    - target: {fileID: 246233964703834573, guid: aa8de5f3f82b33d4e9dc7bd67970ebca,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1945442166}
+    - target: {fileID: 246233964703834573, guid: aa8de5f3f82b33d4e9dc7bd67970ebca,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HideMessage
+      objectReference: {fileID: 0}
+    - target: {fileID: 246233964703834573, guid: aa8de5f3f82b33d4e9dc7bd67970ebca,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa8de5f3f82b33d4e9dc7bd67970ebca, type: 3}
 --- !u!224 &1945442164 stripped
@@ -45313,6 +45398,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1945442163}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1945442166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945442165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1109a0a2b795d004888c9b26dcdbc4a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 1917302203}
 --- !u!4 &1982986713 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7304097665698855045, guid: 7520016a817d68f4685d157d457ebed1,
@@ -47709,6 +47807,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ECM_Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 837169933340118886, guid: 0854df57ba742ca47990e0f0e6d66b14,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1696602124458278804, guid: 0854df57ba742ca47990e0f0e6d66b14,
         type: 3}
