@@ -8,8 +8,8 @@ public class ElementalReaction : MonoBehaviour
     public ElementalColor neutralColor;
     public Material cubeMaterial;
 
-    public Vector3 boyInitPos;
-    public Vector3 ballInitPos;
+    private Vector3 boyInitPos;
+    private Vector3 ballInitPos;
 
     private bool tp = false;
     private Ball ball;
@@ -20,6 +20,9 @@ public class ElementalReaction : MonoBehaviour
     {
         ball = FindObjectOfType<Ball>();
         boy = FindObjectOfType<Boy>();
+
+        boyInitPos = boy.transform.position;
+        ballInitPos = ball.transform.position;
     }
 
     private void Update()

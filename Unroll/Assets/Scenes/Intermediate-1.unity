@@ -27896,7 +27896,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh275966
+  m_Name: pb_Mesh313000
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -42022,8 +42022,6 @@ MonoBehaviour:
   reactionColor: {fileID: 11400000, guid: 09399a7f6f8bc1140b2926a286e9f14b, type: 2}
   neutralColor: {fileID: 11400000, guid: 1a50fecfbdaff3d468c0d06b86147877, type: 2}
   cubeMaterial: {fileID: 2100000, guid: b52e438f1d8c7544aa55b36f4c4a765e, type: 2}
-  boyInitPos: {x: -2.3, y: 0.6, z: 4.8}
-  ballInitPos: {x: -1.14, y: 0.6, z: 4.8}
 --- !u!43 &1815191367
 Mesh:
   m_ObjectHideFlags: 0

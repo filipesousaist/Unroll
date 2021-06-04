@@ -1254,6 +1254,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214801037}
   m_CullTransparentMesh: 0
+--- !u!1 &254520763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3237943608087302588, guid: 53c9f258e53dfdc42b7138c6c537ba96,
+    type: 3}
+  m_PrefabInstance: {fileID: 212325575}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &254520765
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254520763}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7, y: 35, z: 27}
+  m_Center: {x: 0, y: 17.5, z: 0}
 --- !u!1 &285965362
 GameObject:
   m_ObjectHideFlags: 0
@@ -3227,8 +3246,6 @@ MonoBehaviour:
   reactionColor: {fileID: 11400000, guid: 09399a7f6f8bc1140b2926a286e9f14b, type: 2}
   neutralColor: {fileID: 11400000, guid: 1a50fecfbdaff3d468c0d06b86147877, type: 2}
   cubeMaterial: {fileID: 2100000, guid: 509b3a824a6434c4d800cb1674bfcc1c, type: 2}
-  boyInitPos: {x: 20.46, y: 2, z: 19.7}
-  ballInitPos: {x: 20.46, y: 2.5, z: 18.7}
 --- !u!1001 &556312073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5236,8 +5253,6 @@ MonoBehaviour:
   reactionColor: {fileID: 11400000, guid: 37382255306f8b148952011c317e297a, type: 2}
   neutralColor: {fileID: 11400000, guid: 1a50fecfbdaff3d468c0d06b86147877, type: 2}
   cubeMaterial: {fileID: 2100000, guid: 4c8c44b7995594640a01ad79d18b3eab, type: 2}
-  boyInitPos: {x: 20.46, y: 2, z: 19.7}
-  ballInitPos: {x: 20.46, y: 2.5, z: 18.7}
 --- !u!1 &720015749
 GameObject:
   m_ObjectHideFlags: 0
